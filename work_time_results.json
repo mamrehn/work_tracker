@@ -1,0 +1,977 @@
+{
+  "metadata": {
+    "repository": "https://github.com/mamrehn/pib3.git",
+    "user": "mamrehn",
+    "start_date": null,
+    "end_date": null,
+    "generated_at": "2026-01-23T07:31:04.396914",
+    "config": {
+      "streak_threshold_minutes": 90,
+      "pre_streak_minutes": 20,
+      "post_streak_minutes": 5,
+      "default_user": "mamrehn"
+    }
+  },
+  "commits": [
+    {
+      "sha": "3657b0f74938802b52ed0694fdbc52ee5618b320",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-22T17:10:14+00:00",
+      "message": "fix: add audio dependency to github action.",
+      "branch": "main"
+    },
+    {
+      "sha": "39add3fddaad4d5bc784a55f6c5f76d6ef6b36ac",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-22T16:46:57+00:00",
+      "message": "docs: add audio system documentation and API references",
+      "branch": "main"
+    },
+    {
+      "sha": "c31798ff66b9b5b7bd79cfd5387412efa6d03523",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-22T16:36:34+00:00",
+      "message": "refactor: audio handling in RobotBackend and its subclasses",
+      "branch": "main"
+    },
+    {
+      "sha": "1f49659c645127d7aa2fcb6090c659a3abc72248",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-21T23:06:38+00:00",
+      "message": "Add audio backend support for robot and Webots environments",
+      "branch": "main"
+    },
+    {
+      "sha": "242c6e2cb25e87554d4cebc683853f6f61956e02",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-21T09:19:49+00:00",
+      "message": "fix:  consistently remove visualize parameter since relict from former Swift simulation feature.",
+      "branch": "main"
+    },
+    {
+      "sha": "b7c9c43671a75e6c12fb48add9faa6ecf79662ab",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-21T08:04:33+00:00",
+      "message": "version: bump to v0.1.3.",
+      "branch": "main"
+    },
+    {
+      "sha": "f2914c1b571a5c631c940a77403ac603f7262d0e",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-21T07:51:45+00:00",
+      "message": "test: Update host selection in camera AI IMU example with multiple options",
+      "branch": "main"
+    },
+    {
+      "sha": "c4605e4c4592ec0379deab796b31ca088f4d474f",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-21T03:04:49+00:00",
+      "message": "fix: Increase timeout for AI model switching to prevent timeouts",
+      "branch": "main"
+    },
+    {
+      "sha": "38beb6e9a72fc529650a7f85c50a6d48d83d7910",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-21T02:55:04+00:00",
+      "message": "fix: Update IMU data subscription to use individual topics for accelerometer and gyroscope",
+      "branch": "main"
+    },
+    {
+      "sha": "eedf84a0772ca0cabbcbbce8e148fb1fb5bdc5f0",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-21T02:51:06+00:00",
+      "message": "feat: Implement audio backend support with SystemAudioBackend and ROSAudioBackend; update requirements",
+      "branch": "main"
+    },
+    {
+      "sha": "18bb138804631ea80a41ef4603d48e8769622edc",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-21T02:50:49+00:00",
+      "message": "feat: Add audio backend and waypoint execution methods; update example scripts and topic listings",
+      "branch": "main"
+    },
+    {
+      "sha": "f5075b3ef989436e0d137f35d1ddc64b0a38fa37",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-21T00:25:22+00:00",
+      "message": "extend: topics listing.",
+      "branch": "main"
+    },
+    {
+      "sha": "3731d05e57cb7669d9fb724c96be235fbf8dbfcc",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T22:09:43+00:00",
+      "message": "Refactor documentation and codebase to remove Swift visualization support",
+      "branch": "main"
+    },
+    {
+      "sha": "3f64ae3648ef867f6e6ab47db60c0e183c761316",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T21:49:37+00:00",
+      "message": "fix: Update installation instructions to remove '[all]' from pib3 package installation",
+      "branch": "main"
+    },
+    {
+      "sha": "99430944a7ad9d16cf34d8ed9680ce4888218807",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T21:46:02+00:00",
+      "message": "refactor: Remove Swift backend and related references from the pib3 package",
+      "branch": "main"
+    },
+    {
+      "sha": "c0504650c0a5714106c2344fb9e75401b1512847",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T21:45:26+00:00",
+      "message": "fix: Update joint limits and descriptions for finger motors to reflect coupled control in Webots simulation",
+      "branch": "main"
+    },
+    {
+      "sha": "4e0b5f63bbfe53e5680f82c7ef953555b50522da",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T15:18:37+00:00",
+      "message": "fix: Update camera topic and message type to use sensor_msgs for image data",
+      "branch": "main"
+    },
+    {
+      "sha": "c3c81ba0a991004612442541982bbd531fb24b07",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T14:52:35+00:00",
+      "message": "fix: Update ROS message type  from ROS1 to ROS2 standard.",
+      "branch": "main"
+    },
+    {
+      "sha": "4f9f927a7be7ceb63ff68d3887b79a01d1f09a04",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T14:39:03+00:00",
+      "message": "fix: Correct message type references for ROS topics in RealRobotBackend",
+      "branch": "main"
+    },
+    {
+      "sha": "9a6fb910d2668983c963f9597cef457ffdd373e6",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T13:20:31+00:00",
+      "message": "fix: Add proximal motors for finger joints to enable coupled control",
+      "branch": "main"
+    },
+    {
+      "sha": "6f657dab20add23c203908f972e91e567c72176c",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T11:54:48+00:00",
+      "message": "fix: Update hand pose descriptions and joint limits for accuracy and clarity",
+      "branch": "main"
+    },
+    {
+      "sha": "c8537aa19b67f48ece60b27038fe03370b5e6b65",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T11:24:53+00:00",
+      "message": "fix: Bump version to 0.1.2 in pyproject.toml",
+      "branch": "main"
+    },
+    {
+      "sha": "613a7937e386f84995a1be494d56031e6de1d1f6",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T10:59:21+00:00",
+      "message": "fix: Update HandPose enum documentation and correct joint values for clarity",
+      "branch": "main"
+    },
+    {
+      "sha": "ee209fb5951e293605378f7d7ad5a91d15bedd30",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T09:41:29+00:00",
+      "message": "fix: Update left and right hand joint minimum limits for accuracy",
+      "branch": "main"
+    },
+    {
+      "sha": "ea7cc915690439bce7f5a605387cb9817d39b522",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T09:14:24+00:00",
+      "message": "fix: Update joint limits in YAML file for precision and clarity",
+      "branch": "main"
+    },
+    {
+      "sha": "1bd091d47835c22bead584b031dccbc22452b565",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-20T09:02:52+00:00",
+      "message": "feat: Introduce HandPose enum for simplified hand control and update documentation",
+      "branch": "main"
+    },
+    {
+      "sha": "c1624cb25d962483b89cb90f4569ec7d97e523c7",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-19T13:06:39+00:00",
+      "message": "fix: Update Webots backend to use sync joint movements to auto-step in time.",
+      "branch": "main"
+    },
+    {
+      "sha": "e18084243169ee2a4d31a9956759b76b3c77e9d1",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T14:12:19+00:00",
+      "message": "doc: Update README for clarity and consistency in full feature descriptions and examples.",
+      "branch": "main"
+    },
+    {
+      "sha": "75b6877c78b6e7dacad8cf86dab29842e508adc7",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T13:59:44+00:00",
+      "message": "doc: Update README to reflect all key features and provide detailed usage examples for Joint control, camera streaming, AI detection, and IMU sensor data",
+      "branch": "main"
+    },
+    {
+      "sha": "499e0e5fd739c4aa1f76c32b01c055f8342db64c",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T13:55:54+00:00",
+      "message": "doc: Refactor by replacing string joint names with Joint enum for consistency across documentation.",
+      "branch": "main"
+    },
+    {
+      "sha": "a1fc2968c02857eeb9ea5003baf6ba3cb46b07b3",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T13:55:07+00:00",
+      "message": "fix: use Joint enum consistently throughout the project.",
+      "branch": "main"
+    },
+    {
+      "sha": "e23f42c32d000530f42c7a6fdd95cee53b756f8c",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T13:41:39+00:00",
+      "message": "doc: Enhance pib3 documentation and code structure",
+      "branch": "main"
+    },
+    {
+      "sha": "aa60ec0c0a3546eb3719a45b2682f73491cae1c6",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T13:39:52+00:00",
+      "message": "feat: Introduce Joint enum for improved motor name handling and update related methods",
+      "branch": "main"
+    },
+    {
+      "sha": "132ac8b0f2876d2c66ae41a16a48b7d60c9bdd32",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T10:44:21+00:00",
+      "message": "Add examples for IMU visualization, AI model switching, trajectory playback, and update existing scripts",
+      "branch": "main"
+    },
+    {
+      "sha": "02db4b33488878da0c77a6465e9d179c1bfdd4c8",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T10:37:06+00:00",
+      "message": "fix: Update camera AI example and diagnose connection tool for improved usability and error handling",
+      "branch": "main"
+    },
+    {
+      "sha": "564ec03104378833e55ac85455e523389a21000a",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T10:31:48+00:00",
+      "message": "feat: Update .gitignore to include local test scripts and remove obsolete test files",
+      "branch": "main"
+    },
+    {
+      "sha": "da30cd7b55f56c0b841c3cc683390c35b7877e5a",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T10:28:05+00:00",
+      "message": "feat: Add scan and draw proof of concept script demonstrating AI detection and drawing trajectory",
+      "branch": "main"
+    },
+    {
+      "sha": "94f5a54d71b0866693859d99c10620957ad317bf",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T00:56:04+00:00",
+      "message": "feat: Enhance AI model switching with confirmation and timeout handling",
+      "branch": "main"
+    },
+    {
+      "sha": "596ac7b7fcbe7fb83223e1e13fc491836a13ee22",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-18T00:43:28+00:00",
+      "message": "revert: Alter camera image subscription to handle base64-encoded data and improve IMU data filtering",
+      "branch": "main"
+    },
+    {
+      "sha": "afa514c7007c9f9de3e0f7f2673bf0216994b245",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-16T23:25:30+00:00",
+      "message": "feat: Add extensive arm reachability tests, debug scripts, and related documentation for inverse kinematics development.",
+      "branch": "main"
+    },
+    {
+      "sha": "3ae6d81f37337fd767e114c2db2ac50b539b793a",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-16T23:05:44+00:00",
+      "message": "Enhance robot control and sensor integration",
+      "branch": "main"
+    },
+    {
+      "sha": "fdb301af44c23e3599604d885258824c53fd256d",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-07T16:36:15+00:00",
+      "message": "feat: update joint position handling to use /joint_trajectory topic and support degrees",
+      "branch": "main"
+    },
+    {
+      "sha": "b3b330694e4b17338e882b269a19492ef2f09035",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-07T16:12:04+00:00",
+      "message": "feat: add support for degrees in joint position settings and improve error handling for robot connection",
+      "branch": "main"
+    },
+    {
+      "sha": "3881771a6180b0f070ecf61bf852ece3ea8ae740",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-07T09:47:08+00:00",
+      "message": "chore: add logging setup to robot, swift, and webots backends",
+      "branch": "main"
+    },
+    {
+      "sha": "aecdbefe36c74cfcdef36ad344270e10b739c99d",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-23T07:41:37+00:00",
+      "message": "fix: pencil grip trajectory planning by removing hand constraints from IK solver.",
+      "branch": "main"
+    },
+    {
+      "sha": "94b2aeff17dd5ac24e7c485ebf724748ae6fff10",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-23T07:26:45+00:00",
+      "message": "test: add test scripts.",
+      "branch": "main"
+    },
+    {
+      "sha": "f24a9798b0090ff5b35fdb73f17be8f82edaa081",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-23T07:26:01+00:00",
+      "message": "improve: relax constraints on pen orientation while drawing. 6 DOF to 5 DOF.",
+      "branch": "main"
+    },
+    {
+      "sha": "eba308301f804d7f20c3d9d1704ea18d8a3f0e4e",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-23T07:06:30+00:00",
+      "message": "fix: sependency version incompatibilities.",
+      "branch": "main"
+    },
+    {
+      "sha": "ea298b100b76b7a5fc30cd068bbcab91cc12bf25",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-23T06:22:47+00:00",
+      "message": "Merge branch 'main' of https://github.com/mamrehn/pib3",
+      "branch": "main"
+    },
+    {
+      "sha": "d8a184275d1ba66ba9bf3e69004ac35b350be0d8",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-23T06:22:31+00:00",
+      "message": "refactor: Simplify install by separating only  core and development dependencies in requirements files.",
+      "branch": "main"
+    },
+    {
+      "sha": "5c8b6253e50cba37969c743ec7a432ab368d16e9",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-22T20:45:51+00:00",
+      "message": "doc: more precise description.",
+      "branch": "main"
+    },
+    {
+      "sha": "0be6d43d9264de00ac18d9712febec2361b60c3f",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-22T18:07:19+00:00",
+      "message": "fix: path to image file.",
+      "branch": "main"
+    },
+    {
+      "sha": "73d305c3cae41a98b0a9ae0cfc0c65d20cdf991c",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-22T17:59:43+00:00",
+      "message": "refactor: Update configuration parameters and add diagnostic scripts for IK setup",
+      "branch": "main"
+    },
+    {
+      "sha": "3a935b7607b23d6af061734a663330d3faf32d0a",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T23:25:38+00:00",
+      "message": "refactor: Update package name from pib-ik to pib3 in documentation and code",
+      "branch": "main"
+    },
+    {
+      "sha": "b35547a5ec981fcc3b9f26e417e3a8415dc5efd1",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T23:18:05+00:00",
+      "message": "Merge branch 'main' of https://github.com/mamrehn/pib3",
+      "branch": "main"
+    },
+    {
+      "sha": "dfaf7297ccf5e802cea67ca94d4390dc36aeb63b",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T23:17:43+00:00",
+      "message": "refactor: Update documentation to reflect the package name change from pib-ik to pib3",
+      "branch": "main"
+    },
+    {
+      "sha": "3a1b6ea3d28a893b593d9b35af7f288167b57a52",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T23:06:06+00:00",
+      "message": "fix: README for testing code in Webots or Swift.",
+      "branch": "main"
+    },
+    {
+      "sha": "09bd052c8defcc3a1c06266fbdb43e3a07d6fdc5",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T23:04:35+00:00",
+      "message": "revise: README with installation and usage details",
+      "branch": "main"
+    },
+    {
+      "sha": "7d7c366c2a96834e6e0c03864f193dd94febb392",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T22:52:28+00:00",
+      "message": "stats: add description to README.",
+      "branch": "main"
+    },
+    {
+      "sha": "0226e0167d774ec7dcb10675d0a0ab7208ed9ff6",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T22:20:19+00:00",
+      "message": "Rename: pib_ik package to pib3",
+      "branch": "main"
+    },
+    {
+      "sha": "8857a2435df9e6d211e9501a5f71021ab0097d9c",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T22:13:22+00:00",
+      "message": "logo: increase readability of the p character.",
+      "branch": "main"
+    },
+    {
+      "sha": "4aca6510af0bc55192049c7cb82de4c1054b7a39",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T22:08:47+00:00",
+      "message": "change: official name from pib_ik to pib3.",
+      "branch": "main"
+    },
+    {
+      "sha": "8a3e65fd41730bae8764e16608a911699e493744",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-19T21:54:29+00:00",
+      "message": "feat: Add debug logging for motor commands and service call results in RealRobotBackend",
+      "branch": "main"
+    },
+    {
+      "sha": "3d6c0398ed55ca30a5b772a509a3c116d36c94e7",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T12:01:28+00:00",
+      "message": "feat: Implement individual joint commands with velocity control in `_set_joints_impl` instead of a single batched trajectory.",
+      "branch": "main"
+    },
+    {
+      "sha": "37ecab637a293c57ec2ed483b83f1aac9d1a7ede",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T11:19:12+00:00",
+      "message": "fix: try with expected calibration values.",
+      "branch": "main"
+    },
+    {
+      "sha": "e36a0c79f9b1a1c55da5185e34b70e2aa5563a93",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T11:12:12+00:00",
+      "message": "data: left hand calibration.",
+      "branch": "main"
+    },
+    {
+      "sha": "6910fe062c1c549120f133680108068c91878e3e",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T11:10:43+00:00",
+      "message": "feat: implement separate joint limits for real robot and simulation, update calibration tool",
+      "branch": "main"
+    },
+    {
+      "sha": "b310252189af5e3417c7b4c0247aca0cab849920",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T10:44:28+00:00",
+      "message": "feat: add timeout parameter for joint data retrieval in robot backends",
+      "branch": "main"
+    },
+    {
+      "sha": "79c75011a0aefde4559522fb5b1b4300ce6c8d01",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T10:14:19+00:00",
+      "message": "feat: add timeout parameter for joint data retrieval across robot backends",
+      "branch": "main"
+    },
+    {
+      "sha": "6399b8974754a453faeb7b89b64d5ee85fe8d692",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T10:04:38+00:00",
+      "message": "feat: add timeout parameter for joint data retrieval in robot backends",
+      "branch": "main"
+    },
+    {
+      "sha": "b8642cd7c1820e2a6c8b29845f23f16062023def",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T02:28:01+00:00",
+      "message": "feat: update README to include logo and enhance project title",
+      "branch": "main"
+    },
+    {
+      "sha": "9579d0931f9d3e6cb0c5dbe64e9e49bff781081c",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T01:15:17+00:00",
+      "message": "fix: version incompatibility of websockets library.",
+      "branch": "main"
+    },
+    {
+      "sha": "78a97de5d5fbdab7d609741e9055968f488b7f2f",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T01:04:00+00:00",
+      "message": "feat: add support for pencil grip style in trajectory generation and update related configurations",
+      "branch": "main"
+    },
+    {
+      "sha": "a214571cbf2efcf9adc09ee77848658833a1baeb",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T00:40:46+00:00",
+      "message": "fix: update coordinate system references and offsets in documentation and code",
+      "branch": "main"
+    },
+    {
+      "sha": "8bb5aaa70a8213893734b509a44c5a3c3d62bd7a",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-18T00:27:25+00:00",
+      "message": "feat: add support for initial joint configuration in trajectory generation",
+      "branch": "main"
+    },
+    {
+      "sha": "8cab1157f025218e9f5346ee5e630e91f51a6ea0",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T23:51:10+00:00",
+      "message": "fix: update joint limits to full precision in joint_limits.yaml",
+      "branch": "main"
+    },
+    {
+      "sha": "cff7c157ef8418ff4734842a6a0abb5f281554f9",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T23:26:31+00:00",
+      "message": "fix: enhance position sensor reading accuracy in WebotsBackend",
+      "branch": "main"
+    },
+    {
+      "sha": "67d517a5521fd25cefe05a9a0923d5ce5c7ab4de",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T23:23:07+00:00",
+      "message": "fix: improve position sensor reading stability in WebotsBackend",
+      "branch": "main"
+    },
+    {
+      "sha": "1af02541cccef584e4fc7d6931caed4e47232941",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T22:40:35+00:00",
+      "message": "fix: offset calculation for randiant units per framework.",
+      "branch": "main"
+    },
+    {
+      "sha": "4f2ca46a4121e5ab29f20e0c03fd7470df44610d",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T22:10:44+00:00",
+      "message": "fix: Update disconnect method in WebotsBackend to prevent motor cleanup",
+      "branch": "main"
+    },
+    {
+      "sha": "5f2a76de0f5fdf2294e1fc73ddceb940c427bc2b",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T22:05:45+00:00",
+      "message": "fix: Enable position sensor for motors in WebotsBackend",
+      "branch": "main"
+    },
+    {
+      "sha": "fa28e3b865a5c838265c300a4afe0ddf5058d019",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T21:35:43+00:00",
+      "message": "fix: Update version to 0.1.1 in pyproject.toml",
+      "branch": "main"
+    },
+    {
+      "sha": "cfd4acefdb55a6c8c59fe1b79598c45bf493232b",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T21:32:14+00:00",
+      "message": "Bump version to 0.1.1",
+      "branch": "main"
+    },
+    {
+      "sha": "76806ac08a00d5d88115f3215e463ddac08bc4d7",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T20:47:33+00:00",
+      "message": "doc: Add manual joint control section to README",
+      "branch": "main"
+    },
+    {
+      "sha": "70f7bff9d93ec3714859748b4c1ba3a2dfb2eda4",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T20:30:58+00:00",
+      "message": "fix: Allow deployment on workflow dispatch in GitHub Actions",
+      "branch": "main"
+    },
+    {
+      "sha": "498bb073479110394b4b66ec945c20e61cc19a95",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T20:22:05+00:00",
+      "message": "refactor: Remove outdated CALIBRATION and INSTALLATION guides; update README for clarity",
+      "branch": "main"
+    },
+    {
+      "sha": "64ac10966959e7b2f9cebeae89d1ac3c14d31959",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T20:14:34+00:00",
+      "message": "feat: Add MkDocs configuration for pib-ik documentation",
+      "branch": "main"
+    },
+    {
+      "sha": "bc0cfed3a9afdadfbbe454491d7ed49553e24391",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T11:10:13+00:00",
+      "message": "Merge branch 'main' of https://github.com/mamrehn/pib_ik",
+      "branch": "main"
+    },
+    {
+      "sha": "00a07a3069a85f0c3a243d5e4cbc57139f730422",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-17T11:08:21+00:00",
+      "message": "[Feat] improve connection to robot.",
+      "branch": "main"
+    },
+    {
+      "sha": "8646256ed3abf66b049b7522982165186b76a714",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-16T13:39:45+00:00",
+      "message": "[README] shorten code snipped.",
+      "branch": "main"
+    },
+    {
+      "sha": "70bd30a99d502a4a3ca6caea76b2c1288f3ed0ea",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-16T13:38:23+00:00",
+      "message": "[Add] global pip workaround.",
+      "branch": "main"
+    },
+    {
+      "sha": "f1c1a2fbc83df9c649e76ce2eeff7cab7f4dc2d1",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-16T13:09:59+00:00",
+      "message": "[Fix] pib.rocks link.",
+      "branch": "main"
+    },
+    {
+      "sha": "a278468ddd82f57b50244f09e793437494fdf3eb",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2025-12-16T13:06:53+00:00",
+      "message": "Initial commit.",
+      "branch": "main"
+    }
+  ],
+  "work_time": {
+    "daily_work": {
+      "2025-12-16": {
+        "duration_hours": 0.9644444444444444,
+        "duration_minutes": 57.86666666666667,
+        "streaks": [
+          {
+            "start": "2025-12-16T13:06:53+00:00",
+            "end": "2025-12-16T13:39:45+00:00",
+            "commits": 4,
+            "duration_minutes": 57.86666666666667
+          }
+        ]
+      },
+      "2025-12-17": {
+        "duration_hours": 7.088611111111111,
+        "duration_minutes": 425.31666666666666,
+        "streaks": [
+          {
+            "start": "2025-12-17T11:08:21+00:00",
+            "end": "2025-12-17T11:10:13+00:00",
+            "commits": 2,
+            "duration_minutes": 26.866666666666667
+          },
+          {
+            "start": "2025-12-17T20:14:34+00:00",
+            "end": "2025-12-18T02:28:01+00:00",
+            "commits": 17,
+            "duration_minutes": 398.45
+          }
+        ]
+      },
+      "2025-12-18": {
+        "duration_hours": 2.363888888888889,
+        "duration_minutes": 141.83333333333334,
+        "streaks": [
+          {
+            "start": "2025-12-18T10:04:38+00:00",
+            "end": "2025-12-18T12:01:28+00:00",
+            "commits": 7,
+            "duration_minutes": 141.83333333333334
+          }
+        ]
+      },
+      "2025-12-19": {
+        "duration_hours": 1.9358333333333333,
+        "duration_minutes": 116.15,
+        "streaks": [
+          {
+            "start": "2025-12-19T21:54:29+00:00",
+            "end": "2025-12-19T23:25:38+00:00",
+            "commits": 10,
+            "duration_minutes": 116.15
+          }
+        ]
+      },
+      "2025-12-22": {
+        "duration_hours": 0.96,
+        "duration_minutes": 57.6,
+        "streaks": [
+          {
+            "start": "2025-12-22T17:59:43+00:00",
+            "end": "2025-12-22T18:07:19+00:00",
+            "commits": 2,
+            "duration_minutes": 32.6
+          },
+          {
+            "start": "2025-12-22T20:45:51+00:00",
+            "end": "2025-12-22T20:45:51+00:00",
+            "commits": 1,
+            "duration_minutes": 25.0
+          }
+        ]
+      },
+      "2025-12-23": {
+        "duration_hours": 1.735,
+        "duration_minutes": 104.1,
+        "streaks": [
+          {
+            "start": "2025-12-23T06:22:31+00:00",
+            "end": "2025-12-23T07:41:37+00:00",
+            "commits": 6,
+            "duration_minutes": 104.1
+          }
+        ]
+      },
+      "2026-01-07": {
+        "duration_hours": 1.236388888888889,
+        "duration_minutes": 74.18333333333334,
+        "streaks": [
+          {
+            "start": "2026-01-07T09:47:08+00:00",
+            "end": "2026-01-07T09:47:08+00:00",
+            "commits": 1,
+            "duration_minutes": 25.0
+          },
+          {
+            "start": "2026-01-07T16:12:04+00:00",
+            "end": "2026-01-07T16:36:15+00:00",
+            "commits": 2,
+            "duration_minutes": 49.18333333333333
+          }
+        ]
+      },
+      "2026-01-16": {
+        "duration_hours": 0.7461111111111111,
+        "duration_minutes": 44.766666666666666,
+        "streaks": [
+          {
+            "start": "2026-01-16T23:05:44+00:00",
+            "end": "2026-01-16T23:25:30+00:00",
+            "commits": 2,
+            "duration_minutes": 44.766666666666666
+          }
+        ]
+      },
+      "2026-01-18": {
+        "duration_hours": 2.2719444444444443,
+        "duration_minutes": 136.31666666666666,
+        "streaks": [
+          {
+            "start": "2026-01-18T00:43:28+00:00",
+            "end": "2026-01-18T00:56:04+00:00",
+            "commits": 2,
+            "duration_minutes": 37.6
+          },
+          {
+            "start": "2026-01-18T10:28:05+00:00",
+            "end": "2026-01-18T10:44:21+00:00",
+            "commits": 4,
+            "duration_minutes": 41.266666666666666
+          },
+          {
+            "start": "2026-01-18T13:39:52+00:00",
+            "end": "2026-01-18T14:12:19+00:00",
+            "commits": 6,
+            "duration_minutes": 57.45
+          }
+        ]
+      },
+      "2026-01-19": {
+        "duration_hours": 0.4166666666666667,
+        "duration_minutes": 25.0,
+        "streaks": [
+          {
+            "start": "2026-01-19T13:06:39+00:00",
+            "end": "2026-01-19T13:06:39+00:00",
+            "commits": 1,
+            "duration_minutes": 25.0
+          }
+        ]
+      },
+      "2026-01-20": {
+        "duration_hours": 7.500555555555556,
+        "duration_minutes": 450.03333333333336,
+        "streaks": [
+          {
+            "start": "2026-01-20T09:02:52+00:00",
+            "end": "2026-01-20T15:18:37+00:00",
+            "commits": 10,
+            "duration_minutes": 400.75
+          },
+          {
+            "start": "2026-01-20T21:45:26+00:00",
+            "end": "2026-01-20T22:09:43+00:00",
+            "commits": 4,
+            "duration_minutes": 49.28333333333333
+          }
+        ]
+      },
+      "2026-01-21": {
+        "duration_hours": 3.367777777777778,
+        "duration_minutes": 202.06666666666666,
+        "streaks": [
+          {
+            "start": "2026-01-21T00:25:22+00:00",
+            "end": "2026-01-21T00:25:22+00:00",
+            "commits": 1,
+            "duration_minutes": 25.0
+          },
+          {
+            "start": "2026-01-21T02:50:49+00:00",
+            "end": "2026-01-21T03:04:49+00:00",
+            "commits": 4,
+            "duration_minutes": 39.0
+          },
+          {
+            "start": "2026-01-21T07:51:45+00:00",
+            "end": "2026-01-21T09:19:49+00:00",
+            "commits": 3,
+            "duration_minutes": 113.06666666666666
+          },
+          {
+            "start": "2026-01-21T23:06:38+00:00",
+            "end": "2026-01-21T23:06:38+00:00",
+            "commits": 1,
+            "duration_minutes": 25.0
+          }
+        ]
+      },
+      "2026-01-22": {
+        "duration_hours": 0.9777777777777777,
+        "duration_minutes": 58.666666666666664,
+        "streaks": [
+          {
+            "start": "2026-01-22T16:36:34+00:00",
+            "end": "2026-01-22T17:10:14+00:00",
+            "commits": 3,
+            "duration_minutes": 58.666666666666664
+          }
+        ]
+      }
+    },
+    "total_hours": 31.565,
+    "total_minutes": 1893.9
+  }
+}
