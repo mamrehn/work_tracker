@@ -1,18 +1,138 @@
 {
   "metadata": {
     "repository": "https://github.com/mamrehn/pib3.git",
-    "user": "mamrehn",
+    "user": null,
     "start_date": null,
     "end_date": null,
-    "generated_at": "2026-01-23T07:31:04.396914",
+    "generated_at": "2026-01-29T15:44:04.847880",
     "config": {
       "streak_threshold_minutes": 90,
-      "pre_streak_minutes": 20,
+      "pre_streak_minutes": 30,
       "post_streak_minutes": 5,
-      "default_user": "mamrehn"
+      "default_user": null
     }
   },
   "commits": [
+    {
+      "sha": "0285fa83deb1d4e6f208511cce7dc7f1f114f526",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-29T14:42:20+00:00",
+      "message": "feat: add DH model implementation for PIB arms and integrate with IK solver",
+      "branch": "main"
+    },
+    {
+      "sha": "b87b470e46ad356c66839990d992b9ce5306e21f",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-27T23:11:05+00:00",
+      "message": "version: bump version to 0.1.4 in __init__.py and pyproject.toml",
+      "branch": "main"
+    },
+    {
+      "sha": "5ef1019f2a4d3d68aa488d31318be890114b197d",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-27T23:08:23+00:00",
+      "message": "fix: implement motor reset to true zero in Webots backend for accurate positioning",
+      "branch": "main"
+    },
+    {
+      "sha": "8a1a64640bdb5392a33ed1df1a0e4d1122af5a8c",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-27T22:12:39+00:00",
+      "message": "fix: update resource paths for URDF models to relative URLs",
+      "branch": "main"
+    },
+    {
+      "sha": "2cc8640dab59e12b167029c8b59b00a80bc6bb25",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-27T13:24:15+00:00",
+      "message": "fix: update forearm rotation logic based on grip style for improved wrist orientation",
+      "branch": "main"
+    },
+    {
+      "sha": "c2628757aa7ae905814e08eaa1722b9f2f3c027a",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-27T09:00:00+00:00",
+      "message": "fix: refine IK solver to use only arm joints and clarify joint handling in trajectory generation",
+      "branch": "main"
+    },
+    {
+      "sha": "afa5278fce943dc2a341a7a1846b333d94be0606",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-23T21:55:10+00:00",
+      "message": "improve: update default duration to 5 seconds and change TTS text to German",
+      "branch": "main"
+    },
+    {
+      "sha": "f9ba1ad2a2b444c42e38ba2a951ae5e4188ac70a",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-23T21:51:13+00:00",
+      "message": "fix: add lightweight audio test script and fix TTS voice path handling",
+      "branch": "main"
+    },
+    {
+      "sha": "64ba804d5bccda6193fad8815c97d9359039bf7c",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-23T20:58:48+00:00",
+      "message": "feat: add lightweight audio test script using this project's high-level API",
+      "branch": "main"
+    },
+    {
+      "sha": "c9e847424ee11e63d46529a5414549a0028531eb",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-23T20:58:19+00:00",
+      "message": "fix: update sounddevice dependency to 0.5.5 to resolve callback exception on Python 3.13",
+      "branch": "main"
+    },
+    {
+      "sha": "65dd4d4acbca72ddb2ca25c4295a0ee0989c3f12",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-23T12:07:03+00:00",
+      "message": "fix: host and port attributes.",
+      "branch": "main"
+    },
+    {
+      "sha": "1d1b35f43e0fa2bbc28d69c1b94c0c9c13a5cc84",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-23T09:36:04+00:00",
+      "message": "fix: Improve error handling for sounddevice import and add installation instructions for PortAudio",
+      "branch": "main"
+    },
+    {
+      "sha": "f7adb9bd0e4f90b618f7e077f4c69fba31d5ae78",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-23T07:05:38+00:00",
+      "message": "doc: Enhance documentation with complete audio system examples and API references",
+      "branch": "main"
+    },
+    {
+      "sha": "8e70bd2393cf48407b23f6988fcbc802be5a02f9",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-23T06:52:24+00:00",
+      "message": "fix: update system dependencies for documentation build",
+      "branch": "main"
+    },
+    {
+      "sha": "a575aa67cc801f0516b9b94a3927dcdfe56e83a6",
+      "author": "mamrehn",
+      "email": "mamrehn@users.noreply.github.com",
+      "date": "2026-01-23T06:47:54+00:00",
+      "message": "feat(audio): Enhance audio subsystem with recording capabilities and device management",
+      "branch": "main"
+    },
     {
       "sha": "3657b0f74938802b52ed0694fdbc52ee5618b320",
       "author": "mamrehn",
@@ -761,217 +881,373 @@
   "work_time": {
     "daily_work": {
       "2025-12-16": {
-        "duration_hours": 0.9644444444444444,
-        "duration_minutes": 57.86666666666667,
+        "duration_hours": 1.1311111111111112,
+        "duration_minutes": 67.86666666666666,
         "streaks": [
           {
             "start": "2025-12-16T13:06:53+00:00",
             "end": "2025-12-16T13:39:45+00:00",
             "commits": 4,
-            "duration_minutes": 57.86666666666667
+            "duration_minutes": 67.86666666666666,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2025-12-17": {
-        "duration_hours": 7.088611111111111,
-        "duration_minutes": 425.31666666666666,
+        "duration_hours": 7.421944444444445,
+        "duration_minutes": 445.31666666666666,
         "streaks": [
           {
             "start": "2025-12-17T11:08:21+00:00",
             "end": "2025-12-17T11:10:13+00:00",
             "commits": 2,
-            "duration_minutes": 26.866666666666667
+            "duration_minutes": 36.86666666666667,
+            "authors": [
+              "mamrehn"
+            ]
           },
           {
             "start": "2025-12-17T20:14:34+00:00",
             "end": "2025-12-18T02:28:01+00:00",
             "commits": 17,
-            "duration_minutes": 398.45
+            "duration_minutes": 408.45,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2025-12-18": {
-        "duration_hours": 2.363888888888889,
-        "duration_minutes": 141.83333333333334,
+        "duration_hours": 2.5305555555555554,
+        "duration_minutes": 151.83333333333334,
         "streaks": [
           {
             "start": "2025-12-18T10:04:38+00:00",
             "end": "2025-12-18T12:01:28+00:00",
             "commits": 7,
-            "duration_minutes": 141.83333333333334
+            "duration_minutes": 151.83333333333334,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2025-12-19": {
-        "duration_hours": 1.9358333333333333,
-        "duration_minutes": 116.15,
+        "duration_hours": 2.1025,
+        "duration_minutes": 126.15,
         "streaks": [
           {
             "start": "2025-12-19T21:54:29+00:00",
             "end": "2025-12-19T23:25:38+00:00",
             "commits": 10,
-            "duration_minutes": 116.15
+            "duration_minutes": 126.15,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2025-12-22": {
-        "duration_hours": 0.96,
-        "duration_minutes": 57.6,
+        "duration_hours": 1.2933333333333332,
+        "duration_minutes": 77.6,
         "streaks": [
           {
             "start": "2025-12-22T17:59:43+00:00",
             "end": "2025-12-22T18:07:19+00:00",
             "commits": 2,
-            "duration_minutes": 32.6
+            "duration_minutes": 42.6,
+            "authors": [
+              "mamrehn"
+            ]
           },
           {
             "start": "2025-12-22T20:45:51+00:00",
             "end": "2025-12-22T20:45:51+00:00",
             "commits": 1,
-            "duration_minutes": 25.0
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2025-12-23": {
-        "duration_hours": 1.735,
-        "duration_minutes": 104.1,
+        "duration_hours": 1.9016666666666666,
+        "duration_minutes": 114.1,
         "streaks": [
           {
             "start": "2025-12-23T06:22:31+00:00",
             "end": "2025-12-23T07:41:37+00:00",
             "commits": 6,
-            "duration_minutes": 104.1
+            "duration_minutes": 114.1,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2026-01-07": {
-        "duration_hours": 1.236388888888889,
-        "duration_minutes": 74.18333333333334,
+        "duration_hours": 1.5697222222222222,
+        "duration_minutes": 94.18333333333334,
         "streaks": [
           {
             "start": "2026-01-07T09:47:08+00:00",
             "end": "2026-01-07T09:47:08+00:00",
             "commits": 1,
-            "duration_minutes": 25.0
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
           },
           {
             "start": "2026-01-07T16:12:04+00:00",
             "end": "2026-01-07T16:36:15+00:00",
             "commits": 2,
-            "duration_minutes": 49.18333333333333
+            "duration_minutes": 59.18333333333333,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2026-01-16": {
-        "duration_hours": 0.7461111111111111,
-        "duration_minutes": 44.766666666666666,
+        "duration_hours": 0.9127777777777778,
+        "duration_minutes": 54.766666666666666,
         "streaks": [
           {
             "start": "2026-01-16T23:05:44+00:00",
             "end": "2026-01-16T23:25:30+00:00",
             "commits": 2,
-            "duration_minutes": 44.766666666666666
+            "duration_minutes": 54.766666666666666,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2026-01-18": {
-        "duration_hours": 2.2719444444444443,
-        "duration_minutes": 136.31666666666666,
+        "duration_hours": 2.7719444444444443,
+        "duration_minutes": 166.31666666666666,
         "streaks": [
           {
             "start": "2026-01-18T00:43:28+00:00",
             "end": "2026-01-18T00:56:04+00:00",
             "commits": 2,
-            "duration_minutes": 37.6
+            "duration_minutes": 47.6,
+            "authors": [
+              "mamrehn"
+            ]
           },
           {
             "start": "2026-01-18T10:28:05+00:00",
             "end": "2026-01-18T10:44:21+00:00",
             "commits": 4,
-            "duration_minutes": 41.266666666666666
+            "duration_minutes": 51.266666666666666,
+            "authors": [
+              "mamrehn"
+            ]
           },
           {
             "start": "2026-01-18T13:39:52+00:00",
             "end": "2026-01-18T14:12:19+00:00",
             "commits": 6,
-            "duration_minutes": 57.45
+            "duration_minutes": 67.45,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2026-01-19": {
-        "duration_hours": 0.4166666666666667,
-        "duration_minutes": 25.0,
+        "duration_hours": 0.5833333333333334,
+        "duration_minutes": 35.0,
         "streaks": [
           {
             "start": "2026-01-19T13:06:39+00:00",
             "end": "2026-01-19T13:06:39+00:00",
             "commits": 1,
-            "duration_minutes": 25.0
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2026-01-20": {
-        "duration_hours": 7.500555555555556,
-        "duration_minutes": 450.03333333333336,
+        "duration_hours": 7.833888888888889,
+        "duration_minutes": 470.03333333333336,
         "streaks": [
           {
             "start": "2026-01-20T09:02:52+00:00",
             "end": "2026-01-20T15:18:37+00:00",
             "commits": 10,
-            "duration_minutes": 400.75
+            "duration_minutes": 410.75,
+            "authors": [
+              "mamrehn"
+            ]
           },
           {
             "start": "2026-01-20T21:45:26+00:00",
             "end": "2026-01-20T22:09:43+00:00",
             "commits": 4,
-            "duration_minutes": 49.28333333333333
+            "duration_minutes": 59.28333333333333,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2026-01-21": {
-        "duration_hours": 3.367777777777778,
-        "duration_minutes": 202.06666666666666,
+        "duration_hours": 4.0344444444444445,
+        "duration_minutes": 242.06666666666666,
         "streaks": [
           {
             "start": "2026-01-21T00:25:22+00:00",
             "end": "2026-01-21T00:25:22+00:00",
             "commits": 1,
-            "duration_minutes": 25.0
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
           },
           {
             "start": "2026-01-21T02:50:49+00:00",
             "end": "2026-01-21T03:04:49+00:00",
             "commits": 4,
-            "duration_minutes": 39.0
+            "duration_minutes": 49.0,
+            "authors": [
+              "mamrehn"
+            ]
           },
           {
             "start": "2026-01-21T07:51:45+00:00",
             "end": "2026-01-21T09:19:49+00:00",
             "commits": 3,
-            "duration_minutes": 113.06666666666666
+            "duration_minutes": 123.06666666666666,
+            "authors": [
+              "mamrehn"
+            ]
           },
           {
             "start": "2026-01-21T23:06:38+00:00",
             "end": "2026-01-21T23:06:38+00:00",
             "commits": 1,
-            "duration_minutes": 25.0
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       },
       "2026-01-22": {
-        "duration_hours": 0.9777777777777777,
-        "duration_minutes": 58.666666666666664,
+        "duration_hours": 1.1444444444444444,
+        "duration_minutes": 68.66666666666667,
         "streaks": [
           {
             "start": "2026-01-22T16:36:34+00:00",
             "end": "2026-01-22T17:10:14+00:00",
             "commits": 3,
-            "duration_minutes": 58.666666666666664
+            "duration_minutes": 68.66666666666667,
+            "authors": [
+              "mamrehn"
+            ]
+          }
+        ]
+      },
+      "2026-01-23": {
+        "duration_hours": 3.576388888888889,
+        "duration_minutes": 214.58333333333334,
+        "streaks": [
+          {
+            "start": "2026-01-23T06:47:54+00:00",
+            "end": "2026-01-23T07:05:38+00:00",
+            "commits": 3,
+            "duration_minutes": 52.733333333333334,
+            "authors": [
+              "mamrehn"
+            ]
+          },
+          {
+            "start": "2026-01-23T09:36:04+00:00",
+            "end": "2026-01-23T09:36:04+00:00",
+            "commits": 1,
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
+          },
+          {
+            "start": "2026-01-23T12:07:03+00:00",
+            "end": "2026-01-23T12:07:03+00:00",
+            "commits": 1,
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
+          },
+          {
+            "start": "2026-01-23T20:58:19+00:00",
+            "end": "2026-01-23T21:55:10+00:00",
+            "commits": 4,
+            "duration_minutes": 91.85,
+            "authors": [
+              "mamrehn"
+            ]
+          }
+        ]
+      },
+      "2026-01-27": {
+        "duration_hours": 2.723888888888889,
+        "duration_minutes": 163.43333333333334,
+        "streaks": [
+          {
+            "start": "2026-01-27T09:00:00+00:00",
+            "end": "2026-01-27T09:00:00+00:00",
+            "commits": 1,
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
+          },
+          {
+            "start": "2026-01-27T13:24:15+00:00",
+            "end": "2026-01-27T13:24:15+00:00",
+            "commits": 1,
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
+          },
+          {
+            "start": "2026-01-27T22:12:39+00:00",
+            "end": "2026-01-27T23:11:05+00:00",
+            "commits": 3,
+            "duration_minutes": 93.43333333333334,
+            "authors": [
+              "mamrehn"
+            ]
+          }
+        ]
+      },
+      "2026-01-29": {
+        "duration_hours": 0.5833333333333334,
+        "duration_minutes": 35.0,
+        "streaks": [
+          {
+            "start": "2026-01-29T14:42:20+00:00",
+            "end": "2026-01-29T14:42:20+00:00",
+            "commits": 1,
+            "duration_minutes": 35.0,
+            "authors": [
+              "mamrehn"
+            ]
           }
         ]
       }
     },
-    "total_hours": 31.565,
-    "total_minutes": 1893.9
+    "total_hours": 42.11527777777778,
+    "total_minutes": 2526.9166666666665
   }
 }

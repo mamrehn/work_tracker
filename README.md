@@ -5,13 +5,13 @@ A Python script that calculates work hours from git commit history using the Git
 ## Features
 
 - **GitHub API Integration**: Fetch commits from all branches without cloning the repository
-- **OAuth Authentication**: Secure device flow authentication or personal access token support
-- **Configurable Parameters**: Customize streak thresholds and work time assumptions
+- **Authentication**: Supports GitHub personal access tokens or unauthenticated access (for public repos)
+- **Configurable Parameters**: Customize streak thresholds and work time assumptions (in minutes)
 - **Smart Streak Detection**: Automatically merges overlapping work sessions across branches
 - **Date Filtering**: Analyze specific time periods using ISO 8601 format
-- **User Filtering**: Track work hours for specific contributors
-- **JSON Caching**: Save and reload results for quick access
-- **Detailed Reporting**: Daily breakdown and total work hours summary
+- **User Filtering**: Track work hours for all contributors or specific ones
+- **Author Reporting**: Shows which users contributed to each work session in the summary
+- **JSON Caching**: Save and reload results for quick access with `--load`
 
 ## Installation
 
@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 ### Basic Usage
 
-Analyze a repository with default settings (user: mamrehn):
+Analyze a repository with default settings (counts all users):
 
 ```bash
 python git_work_tracker.py --repo https://github.com/owner/repo
@@ -34,7 +34,7 @@ python git_work_tracker.py --repo https://github.com/owner/repo
 
 ### With Personal Access Token
 
-Skip OAuth by providing a GitHub personal access token:
+Highly recommended for higher rate limits (5000/hour vs 60/hour):
 
 ```bash
 python git_work_tracker.py --repo owner/repo --token YOUR_GITHUB_TOKEN
@@ -60,7 +60,7 @@ python git_work_tracker.py --repo owner/repo --user johndoe
 
 ### Custom Configuration
 
-Adjust streak detection and work time assumptions:
+Adjust streak detection and work time assumptions (all units in minutes):
 
 ```bash
 python git_work_tracker.py --repo owner/repo \
@@ -82,8 +82,8 @@ python git_work_tracker.py --load work_time_results.json
 | Option | Default | Description |
 |--------|---------|-------------|
 | `--repo` | - | GitHub repository URL or owner/repo format (required) |
-| `--token` | - | GitHub personal access token (alternative to OAuth) |
-| `--user` | mamrehn | Git username to filter commits |
+| `--token` | - | GitHub personal access token (recommended) |
+| `--user` | - | Git username to filter commits (default: all users) |
 | `--start` | - | Start date/time in ISO 8601 format |
 | `--end` | - | End date/time in ISO 8601 format |
 | `--output` | work_time_results.json | Output JSON file path |
@@ -98,7 +98,7 @@ python git_work_tracker.py --load work_time_results.json
 
 The script analyzes commit timestamps to identify work sessions (streaks):
 
-1. **Fetch Commits**: Retrieves all commits from all branches for the specified user
+1. **Fetch Commits**: Retrieves all commits from all branches
 2. **Sort by Time**: Orders commits chronologically across all branches
 3. **Detect Streaks**: Groups commits within the threshold (default: 90 minutes) into work sessions
 4. **Merge Overlaps**: Automatically handles branch switches during the same work session
@@ -120,17 +120,6 @@ The script identifies:
 - **Streak 2**: 12:00 (0 hours) + 20 min pre + 5 min post = **25m**
 - **Total**: **1h 50m**
 
-## OAuth Setup
-
-When running without a `--token`, the script uses GitHub's device flow OAuth:
-
-1. The script displays a URL and user code
-2. Visit the URL in your browser
-3. Enter the code to authorize the application
-4. The script automatically continues once authorized
-
-No client secret is required for device flow authentication.
-
 ## JSON Output Format
 
 The output JSON contains:
@@ -139,7 +128,7 @@ The output JSON contains:
 {
   "metadata": {
     "repository": "owner/repo",
-    "user": "mamrehn",
+    "user": null,
     "start_date": "2026-01-01T00:00:00+01:00",
     "end_date": null,
     "generated_at": "2026-01-23T07:19:18+01:00",
@@ -168,7 +157,7 @@ The output JSON contains:
 
 GitHub API rate limits:
 - **Unauthenticated**: 60 requests/hour
-- **Authenticated** (OAuth or token): 5,000 requests/hour
+- **Authenticated** (token): 5,000 requests/hour
 
 The script typically uses one request per branch plus pagination requests for large commit histories.
 
