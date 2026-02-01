@@ -622,12 +622,13 @@ def main():
         output_file = args.output or DEFAULT_OUTPUT_FILE
         save_efforts_to_json(efforts, output_file)
 
-        # Print summary
+        # Print summary (sorted by effort spent, descending)
         print("\n" + "=" * 60)
-        print("SCAN COMPLETE - SUMMARY")
+        print("SCAN COMPLETE - SUMMARY (sorted by effort)")
         print("=" * 60)
         total_hours_all = 0
-        for repo_name, repo_data in efforts.items():
+        sorted_efforts = sorted(efforts.items(), key=lambda x: x[1]["total_hours"], reverse=True)
+        for repo_name, repo_data in sorted_efforts:
             hours = repo_data["total_hours"]
             minutes = repo_data["total_minutes"] % 60
             commits = repo_data["total_commits"]
