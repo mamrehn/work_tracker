@@ -8,9 +8,12 @@ Supports OAuth authentication, configurable streak detection, and JSON caching.
 
 import argparse
 import json
+import os
+import subprocess
 import sys
 import time
 from datetime import datetime, timedelta
+from pathlib import Path
 from typing import List, Dict, Optional, Tuple
 from collections import defaultdict
 
@@ -25,14 +28,16 @@ DEFAULT_CONFIG = {
     "post_streak_minutes": 5
 }
 
+DEFAULT_OUTPUT_FILE = "efforts.json"
+
 
 class GitHubAuth:
     """Handles GitHub authentication via personal access token."""
-    
+
     def __init__(self, token: Optional[str] = None):
         self.token = token
         self.session = requests.Session()
-    
+
     def get_headers(self) -> Dict[str, str]:
         """Get headers for GitHub API requests."""
         headers = {
@@ -42,6 +47,154 @@ class GitHubAuth:
         if self.token:
             headers["Authorization"] = f"token {self.token}"
         return headers
+
+
+def is_git_repository(path: str) -> bool:
+    """Check if a directory is a git repository."""
+    git_dir = os.path.join(path, ".git")
+    return os.path.isdir(git_dir)
+
+
+def get_remote_url(repo_path: str) -> Optional[str]:
+    """Get the remote origin URL of a git repository."""
+    try:
+        result = subprocess.run(
+            ["git", "remote", "get-url", "origin"],
+            cwd=repo_path,
+            capture_output=True,
+            text=True
+        )
+        if result.returncode == 0:
+            return result.stdout.strip()
+    except Exception:
+        pass
+    return None
+
+
+def is_local_up_to_date(repo_path: str) -> bool:
+    """
+    Check if the local branch is up-to-date with its remote tracking branch.
+    Does NOT fetch or modify the filesystem.
+    Returns True if up-to-date (can use local), False otherwise.
+    """
+    try:
+        # Get current branch name
+        result = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            cwd=repo_path,
+            capture_output=True,
+            text=True
+        )
+        if result.returncode != 0:
+            return False
+        current_branch = result.stdout.strip()
+
+        # Get local commit hash
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=repo_path,
+            capture_output=True,
+            text=True
+        )
+        if result.returncode != 0:
+            return False
+        local_hash = result.stdout.strip()
+
+        # Get remote tracking branch commit hash
+        result = subprocess.run(
+            ["git", "rev-parse", f"origin/{current_branch}"],
+            cwd=repo_path,
+            capture_output=True,
+            text=True
+        )
+        if result.returncode != 0:
+            # No remote tracking branch, can't compare
+            return False
+        remote_hash = result.stdout.strip()
+
+        # Check if local is at or ahead of remote
+        # We consider it "up to date" if the remote hash is an ancestor of local
+        result = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", remote_hash, local_hash],
+            cwd=repo_path,
+            capture_output=True,
+            text=True
+        )
+        return result.returncode == 0
+    except Exception:
+        return False
+
+
+def fetch_commits_from_local_git(repo_path: str,
+                                  start_date: Optional[datetime] = None,
+                                  end_date: Optional[datetime] = None) -> List[Dict]:
+    """
+    Fetch commits from local git history using git log.
+    Returns commits in the same format as GitHub API fetching.
+    """
+    commits = []
+    commit_shas = set()
+
+    # Get all branches
+    try:
+        result = subprocess.run(
+            ["git", "branch", "-a", "--format=%(refname:short)"],
+            cwd=repo_path,
+            capture_output=True,
+            text=True
+        )
+        if result.returncode != 0:
+            return []
+        branches = [b.strip() for b in result.stdout.strip().split("\n") if b.strip()]
+    except Exception:
+        return []
+
+    # Filter to local branches only (exclude remotes/origin/...)
+    local_branches = [b for b in branches if not b.startswith("remotes/")]
+
+    for branch in local_branches:
+        # Build git log command
+        log_format = "%H%x00%an%x00%ae%x00%aI%x00%s"  # hash, author, email, date ISO, subject
+        cmd = ["git", "log", branch, f"--format={log_format}"]
+
+        if start_date:
+            cmd.append(f"--since={start_date.isoformat()}")
+        if end_date:
+            cmd.append(f"--until={end_date.isoformat()}")
+
+        try:
+            result = subprocess.run(
+                cmd,
+                cwd=repo_path,
+                capture_output=True,
+                text=True
+            )
+            if result.returncode != 0:
+                continue
+
+            for line in result.stdout.strip().split("\n"):
+                if not line:
+                    continue
+                parts = line.split("\x00")
+                if len(parts) < 5:
+                    continue
+
+                sha, author, email, date_str, message = parts[:5]
+
+                if sha not in commit_shas:
+                    commit_shas.add(sha)
+                    commits.append({
+                        "sha": sha,
+                        "author": author,
+                        "email": email,
+                        "date": date_parser.parse(date_str),
+                        "message": message,
+                        "branch": branch
+                    })
+        except Exception:
+            continue
+
+    return commits
 
 
 class WorkTimeTracker:
@@ -244,16 +397,189 @@ class WorkTimeTracker:
         return "\n".join(lines)
 
 
+def scan_folder_for_efforts(parent_folder: str,
+                            token: Optional[str] = None,
+                            start_date: Optional[datetime] = None,
+                            end_date: Optional[datetime] = None,
+                            config: Optional[Dict] = None) -> Dict:
+    """
+    Scan a parent folder for git repositories and compute effort for each.
+
+    Args:
+        parent_folder: Path to folder containing git repository subfolders
+        token: GitHub personal access token (for remote API fallback)
+        start_date: Optional start date filter
+        end_date: Optional end date filter
+        config: Work time tracker configuration
+
+    Returns:
+        Dictionary with effort data for each repository
+    """
+    if config is None:
+        config = DEFAULT_CONFIG.copy()
+
+    parent_path = os.path.abspath(parent_folder)
+    if not os.path.isdir(parent_path):
+        raise ValueError(f"Parent folder does not exist: {parent_path}")
+
+    auth = GitHubAuth(token=token)
+    tracker = WorkTimeTracker(config)
+    efforts = {}
+
+    # Find all subdirectories that are git repositories
+    subdirs = [d for d in os.listdir(parent_path)
+               if os.path.isdir(os.path.join(parent_path, d))]
+
+    for subdir in subdirs:
+        repo_path = os.path.join(parent_path, subdir)
+
+        if not is_git_repository(repo_path):
+            print(f"Skipping {subdir}: not a git repository")
+            continue
+
+        print(f"\nProcessing repository: {subdir}")
+
+        commits = []
+        source = "unknown"
+
+        # Check if local is up-to-date with remote
+        if is_local_up_to_date(repo_path):
+            print(f"  Local branch is up-to-date, using local git history...")
+            commits = fetch_commits_from_local_git(repo_path, start_date, end_date)
+            source = "local"
+        else:
+            # Try to use remote API
+            remote_url = get_remote_url(repo_path)
+            if remote_url and "github.com" in remote_url:
+                print(f"  Local not up-to-date, using GitHub API...")
+                try:
+                    commits = tracker.fetch_all_commits(
+                        auth, remote_url,
+                        username=None,  # All users
+                        start_date=start_date,
+                        end_date=end_date
+                    )
+                    source = "github_api"
+                except Exception as e:
+                    print(f"  Warning: Failed to fetch from GitHub API: {e}")
+                    print(f"  Falling back to local git history...")
+                    commits = fetch_commits_from_local_git(repo_path, start_date, end_date)
+                    source = "local_fallback"
+            else:
+                print(f"  No GitHub remote found, using local git history...")
+                commits = fetch_commits_from_local_git(repo_path, start_date, end_date)
+                source = "local"
+
+        if not commits:
+            print(f"  No commits found")
+            efforts[subdir] = {
+                "total_hours": 0,
+                "total_minutes": 0,
+                "total_commits": 0,
+                "source": source,
+                "users": {}
+            }
+            continue
+
+        print(f"  Found {len(commits)} commits")
+
+        # Group commits by author
+        commits_by_author = defaultdict(list)
+        for commit in commits:
+            commits_by_author[commit["author"]].append(commit)
+
+        # Calculate work time for each author
+        users_data = {}
+        for author, author_commits in commits_by_author.items():
+            streaks = tracker.calculate_work_streaks(author_commits)
+            work_data = tracker.calculate_work_time(streaks)
+            users_data[author] = {
+                "total_hours": work_data["total_hours"],
+                "total_minutes": work_data["total_minutes"],
+                "total_commits": len(author_commits),
+                "daily_work": work_data["daily_work"]
+            }
+
+        # Calculate totals across all authors
+        total_hours = sum(u["total_hours"] for u in users_data.values())
+        total_minutes = sum(u["total_minutes"] for u in users_data.values())
+        total_commits = sum(u["total_commits"] for u in users_data.values())
+
+        # Date range
+        all_dates = [c["date"] for c in commits]
+        date_range = {
+            "start": min(all_dates).isoformat() if all_dates else None,
+            "end": max(all_dates).isoformat() if all_dates else None
+        }
+
+        efforts[subdir] = {
+            "total_hours": total_hours,
+            "total_minutes": total_minutes,
+            "total_commits": total_commits,
+            "date_range": date_range,
+            "source": source,
+            "users": users_data
+        }
+
+        print(f"  Total: {int(total_hours)}h {int(total_minutes % 60)}m across {len(users_data)} user(s)")
+
+    return efforts
+
+
+def save_efforts_to_json(efforts: Dict, output_path: str = DEFAULT_OUTPUT_FILE):
+    """
+    Save efforts data to JSON file, merging with existing data.
+
+    Args:
+        efforts: Dictionary with effort data for each repository
+        output_path: Path to output JSON file
+    """
+    existing_data = {}
+
+    # Load existing file if it exists
+    if os.path.exists(output_path):
+        try:
+            with open(output_path, 'r') as f:
+                existing_data = json.load(f)
+        except (json.JSONDecodeError, IOError):
+            existing_data = {}
+
+    # Merge: override existing repos with new data
+    existing_data.update(efforts)
+
+    # Add metadata
+    result = {
+        "metadata": {
+            "generated_at": datetime.now().isoformat(),
+            "total_repositories": len(existing_data) - 1 if "metadata" in existing_data else len(existing_data)
+        },
+        "repositories": {k: v for k, v in existing_data.items() if k not in ("metadata", "repositories")}
+    }
+
+    # If existing had repositories key, merge those too
+    if "repositories" in existing_data:
+        result["repositories"].update(existing_data["repositories"])
+        result["repositories"].update(efforts)
+
+    result["metadata"]["total_repositories"] = len(result["repositories"])
+
+    with open(output_path, 'w') as f:
+        json.dump(result, f, indent=2)
+
+    print(f"\n✓ Results saved to: {output_path}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Calculate work hours from git commit history using GitHub API"
     )
     parser.add_argument("--repo", help="GitHub repository URL or owner/repo")
+    parser.add_argument("--scan-folder", help="Scan a folder containing multiple git repositories and compute efforts for each")
     parser.add_argument("--token", help="GitHub personal access token (recommended for higher rate limits)")
     parser.add_argument("--user", help="Git username to filter commits (default: count all users)")
     parser.add_argument("--start", help="Start date/time in ISO 8601 format (e.g., 2026-01-01T00:00:00+01:00)")
     parser.add_argument("--end", help="End date/time in ISO 8601 format")
-    parser.add_argument("--output", help="Output JSON file path (default: work_time_results.json)")
+    parser.add_argument("--output", help=f"Output JSON file path (default: {DEFAULT_OUTPUT_FILE})")
     parser.add_argument("--load", help="Load and display cached results from JSON file")
     parser.add_argument("--streak-threshold", type=int, default=DEFAULT_CONFIG["streak_threshold_minutes"],
                        help=f"Minutes between commits to consider same streak (default: {DEFAULT_CONFIG['streak_threshold_minutes']})")
@@ -261,9 +587,58 @@ def main():
                        help=f"Minutes to add before first commit in streak (default: {DEFAULT_CONFIG['pre_streak_minutes']})")
     parser.add_argument("--post-streak-minutes", type=int, default=DEFAULT_CONFIG["post_streak_minutes"],
                        help=f"Minutes to add after last commit in streak (default: {DEFAULT_CONFIG['post_streak_minutes']})")
-    
+
     args = parser.parse_args()
-    
+
+    # Handle --scan-folder mode
+    if args.scan_folder:
+        # Parse dates if provided
+        start_date = date_parser.parse(args.start) if args.start else None
+        end_date = date_parser.parse(args.end) if args.end else None
+
+        # Setup configuration
+        config = {
+            "streak_threshold_minutes": args.streak_threshold,
+            "pre_streak_minutes": args.pre_streak_minutes,
+            "post_streak_minutes": args.post_streak_minutes
+        }
+
+        print(f"Scanning folder: {args.scan_folder}")
+        print("=" * 60)
+
+        try:
+            efforts = scan_folder_for_efforts(
+                parent_folder=args.scan_folder,
+                token=args.token,
+                start_date=start_date,
+                end_date=end_date,
+                config=config
+            )
+        except Exception as e:
+            print(f"Error scanning folder: {e}", file=sys.stderr)
+            sys.exit(1)
+
+        # Save results
+        output_file = args.output or DEFAULT_OUTPUT_FILE
+        save_efforts_to_json(efforts, output_file)
+
+        # Print summary
+        print("\n" + "=" * 60)
+        print("SCAN COMPLETE - SUMMARY")
+        print("=" * 60)
+        total_hours_all = 0
+        for repo_name, repo_data in efforts.items():
+            hours = repo_data["total_hours"]
+            minutes = repo_data["total_minutes"] % 60
+            commits = repo_data["total_commits"]
+            users = len(repo_data.get("users", {}))
+            total_hours_all += repo_data["total_hours"]
+            print(f"{repo_name}: {int(hours)}h {int(minutes)}m ({commits} commits, {users} user(s))")
+        print("-" * 60)
+        print(f"TOTAL ACROSS ALL REPOS: {int(total_hours_all)}h {int((total_hours_all * 60) % 60)}m")
+        print("=" * 60)
+        return
+
     # Load cached results if requested
     if args.load:
         try:
@@ -303,7 +678,7 @@ def main():
     
     # Validate required arguments
     if not args.repo:
-        print("Error: --repo is required (unless using --load)", file=sys.stderr)
+        print("Error: --repo is required (unless using --load or --scan-folder)", file=sys.stderr)
         parser.print_help()
         sys.exit(1)
     
@@ -356,7 +731,7 @@ def main():
     print("\n" + summary)
     
     # Save to JSON
-    output_file = args.output or "work_time_results.json"
+    output_file = args.output or DEFAULT_OUTPUT_FILE
     result_data = {
         "metadata": {
             "repository": args.repo,
