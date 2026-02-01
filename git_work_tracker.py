@@ -441,6 +441,7 @@ def scan_folder_for_efforts(parent_folder: str,
 
         commits = []
         source = "unknown"
+        remote_url = get_remote_url(repo_path)
 
         # Check if local is up-to-date with remote
         if is_local_up_to_date(repo_path):
@@ -449,7 +450,6 @@ def scan_folder_for_efforts(parent_folder: str,
             source = "local"
         else:
             # Try to use remote API
-            remote_url = get_remote_url(repo_path)
             if remote_url and "github.com" in remote_url:
                 print(f"  Local not up-to-date, using GitHub API...")
                 try:
@@ -477,6 +477,7 @@ def scan_folder_for_efforts(parent_folder: str,
                 "total_minutes": 0,
                 "total_commits": 0,
                 "source": source,
+                "remote_url": remote_url,
                 "users": {}
             }
             continue
@@ -518,6 +519,7 @@ def scan_folder_for_efforts(parent_folder: str,
             "total_commits": total_commits,
             "date_range": date_range,
             "source": source,
+            "remote_url": remote_url,
             "users": users_data
         }
 
