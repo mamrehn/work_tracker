@@ -26,6 +26,12 @@ pip install -r requirements.txt
 
 ### Basic Usage
 
+Analysze all repos below a base folder:
+```bash
+python git_work_tracker.py --scan-folder ~/repositories --output efforts.json
+```
+
+
 Analyze a repository with default settings (counts all users):
 
 ```bash
