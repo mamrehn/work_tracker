@@ -401,7 +401,8 @@ def scan_folder_for_efforts(parent_folder: str,
                             token: Optional[str] = None,
                             start_date: Optional[datetime] = None,
                             end_date: Optional[datetime] = None,
-                            config: Optional[Dict] = None) -> Dict:
+                            config: Optional[Dict] = None,
+                            max_depth: int = 5) -> Dict:
     """
     Scan a parent folder for git repositories and compute effort for each.
 
@@ -426,17 +427,31 @@ def scan_folder_for_efforts(parent_folder: str,
     tracker = WorkTimeTracker(config)
     efforts = {}
 
-    # Find all subdirectories that are git repositories
-    subdirs = [d for d in os.listdir(parent_path)
-               if os.path.isdir(os.path.join(parent_path, d))]
+    # Find all git repositories up to max_depth
+    repo_paths = []
+    
+    def search_dir(current_path, current_depth):
+        if current_depth > max_depth:
+            return
+            
+        try:
+            if current_depth > 0 and is_git_repository(current_path):
+                repo_paths.append(current_path)
+                return
+                
+            for item in os.listdir(current_path):
+                item_path = os.path.join(current_path, item)
+                if os.path.isdir(item_path):
+                    if item.startswith('.'):
+                        continue
+                    search_dir(item_path, current_depth + 1)
+        except PermissionError:
+            pass
+            
+    search_dir(parent_path, 0)
 
-    for subdir in subdirs:
-        repo_path = os.path.join(parent_path, subdir)
-
-        if not is_git_repository(repo_path):
-            print(f"Skipping {subdir}: not a git repository")
-            continue
-
+    for repo_path in repo_paths:
+        subdir = os.path.relpath(repo_path, parent_path)
         print(f"\nProcessing repository: {subdir}")
 
         commits = []
@@ -577,6 +592,7 @@ def main():
     )
     parser.add_argument("--repo", help="GitHub repository URL or owner/repo")
     parser.add_argument("--scan-folder", help="Scan a folder containing multiple git repositories and compute efforts for each")
+    parser.add_argument("--max-depth", type=int, default=5, help="Maximum depth to search for git repositories (default: 5)")
     parser.add_argument("--token", help="GitHub personal access token (recommended for higher rate limits)")
     parser.add_argument("--user", help="Git username to filter commits (default: count all users)")
     parser.add_argument("--start", help="Start date/time in ISO 8601 format (e.g., 2026-01-01T00:00:00+01:00)")
@@ -614,7 +630,8 @@ def main():
                 token=args.token,
                 start_date=start_date,
                 end_date=end_date,
-                config=config
+                config=config,
+                max_depth=args.max_depth
             )
         except Exception as e:
             print(f"Error scanning folder: {e}", file=sys.stderr)
