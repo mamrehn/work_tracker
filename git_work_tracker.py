@@ -23,8 +23,8 @@ from dateutil import parser as date_parser
 
 # Default configuration
 DEFAULT_CONFIG = {
-    "streak_threshold_minutes": 90,
-    "pre_streak_minutes": 30,
+    "streak_threshold_minutes": 60,
+    "pre_streak_minutes": 20,
     "post_streak_minutes": 5
 }
 
